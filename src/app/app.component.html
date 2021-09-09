@@ -1,0 +1,40 @@
+<div id="page">
+
+    <!-- Header -->
+    <header>
+        <h1>todos</h1>
+        <section id="error" *ngIf="error">Oh no!</section>
+    </header>
+
+    <!-- List -->
+    <section id="middle">
+        <input
+            id="newTask"
+            type="text" placeholder="What needs to be done?"
+            [(ngModel)]="newTask" #ctrl="ngModel"
+            (keyup.enter)="addTodo()"
+            required
+        >
+        <nav id="list">
+            <ng-container *ngFor="let li of list | filter:filterValue">
+                <li (click)="setStatus(li)">
+                    <input type="checkbox" [checked]="li.status === 'done'">
+                    <h3>{{li.label}}</h3>
+                </li>
+            </ng-container>
+        </nav>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p id="count">{{list.length}} todos left</p>
+        <button id="btnClear" (click)="storageClear()">Clear</button>
+        <div id="spacer"></div>
+        <nav id="filters">
+            <button (click)="setFilter(undefined)">All</button>
+            <button (click)="setFilter('active')">Active</button>
+            <button (click)="setFilter('done')">Complete</button>
+        </nav>
+    </footer>
+
+</div>
