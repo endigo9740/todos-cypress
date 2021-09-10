@@ -1,7 +1,7 @@
 * {border: 0; margin: 0; padding: 0; outline: none;}
 
 $colorBlack: black;
-$colorWhite: white;
+$colorWhite: #ffffff;
 $colorText: #999;
 $colorGrey: #353535;
 $colorYellow: yellow;
@@ -11,55 +11,72 @@ body {
     background: #242424; color: $colorText;
     font-family: sans-serif;
 }
+hr {border: 1px solid $colorBlack; margin: 50px 0;}
 
 h1, h2, h3, h4, h5, h6 {font-weight: normal;}
 h1 {color: $colorWhite;}
 button {background: $colorYellow; color: $colorBlack; padding: 10px 20px;}
-pre {background: black; color: white; padding: 20px;}
+pre {background: black; color: white; padding: 20px; overflow-x: auto;}
 
 // Page Styles
 #page {
-    width: 1200px; margin: auto;
+    max-width: 960px; margin: auto;
 
-    header, #middle, footer {margin-top: 40px;}
-
-    // Header
-    header {
-        display: flex; align-items: flex-start; justify-content: space-between;
-        #error {background: $colorRed; padding: 10px; color: white;}
-    }
-    // Middle
-    #middle {
-        input+#list {margin-top: 10px;}
-        input[type=text] {
-            box-sizing: border-box;
-            background: transparent; border: 1px solid $colorGrey;
-            color: $colorText; font-size: 20px; line-height: 24px;
-            padding: 20px; width: 100%;
+    // Todos
+    #todos {
+        header, #content, footer {margin-top: 30px;}
+        header {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            #error {background: $colorRed; padding: 10px; color: white;}
         }
-        #list {
-            li {
-                cursor: pointer;
-                padding: 20px; list-style: none;
-                display: flex; align-items: center;
-                border-bottom: 1px solid $colorGrey;
-                input+h3 {margin-left: 20px;}
-                input[type=checkbox] {flex: 0 0 auto;}
-                h3 {flex: 1;}
+        #content {
+            input+#list {margin-top: 10px;}
+            input[type=text] {
+                box-sizing: border-box;
+                background: transparent; border: 1px solid $colorGrey;
+                color: $colorText; font-size: 20px; line-height: 24px;
+                padding: 20px; width: 100%;
+            }
+            #list {
+                li {
+                    cursor: pointer;
+                    padding: 20px; list-style: none;
+                    display: flex; align-items: center;
+                    border-bottom: 1px solid $colorGrey;
+                    input+h3 {margin-left: 20px;}
+                    input[type=checkbox] {flex: 0 0 auto;}
+                    h3 {flex: 1;}
+                }
+            }
+        }
+        footer {
+            display: flex; align-items: center;
+            #count+#btnClear {margin-left: 20px;}
+            #count {flex: 0 0 auto;}
+            #btnClear {flex: 0 0 auto;}
+            #spacer {flex: 1;}
+            #filters {
+                display: 0 0 auto; align-items: center;
+                button {flex: 0 0 auto;}
+                button+button {margin-left: 20px;}
             }
         }
     }
-    // Footer
-    footer {
-        display: flex; align-items: center;
-        #count+#btnClear {margin-left: 20px;}
-        #count {flex: 0 0 auto;}
-        #btnClear {flex: 0 0 auto;}
-        #spacer {flex: 1;}
-        #filters {
-            display: 0 0 auto; align-items: center;
-            button {flex: 0 0 auto;}
-            button+button {margin-left: 20px;}
+    // Posts (HTTP)
+    #posts {
+        header, #content {margin-top: 30px;}
+        #content {
+            article {
+                padding: 20px; list-style: none;
+                border-bottom: 1px solid $colorGrey;
+                .postHeader {
+                    display: flex; align-items: center;
+                    .id+h3 {margin-left: 20px;}
+                    .id {flex: 0 0 auto; color: $colorYellow;}
+                    h3 {flex: 1; color: $colorWhite;}
+                }
+                .postContent {margin-top: 20px;}
+            }
         }
     }
 }

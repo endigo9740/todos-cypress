@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpService } from './http.service';
 
 interface listItem {
     status: string;
@@ -12,20 +13,26 @@ interface listItem {
 })
 export class AppComponent {
     public error: boolean = false;
-    public newTask: string = '';
+    public newTodo: string = '';
     public list: listItem[] = [];
     public filterValue: any;
+    public posts: any[] = [];
 
-    constructor() {
+    constructor(
+        private httpService: HttpService
+    ) {
         this.storageGet();
+        this.getHttpPosts();
     }
 
     addTodo(): void {
         this.error = this.hasError();
         if (this.error === false) {
-            const li: listItem = { status: 'active', label: this.newTask };
+            const li: listItem = { status: 'active', label: this.newTodo };
             this.list.unshift(li);
-            this.newTask = '';
+            this.newTodo = '';
+
+            this.getHttpPosts();
         }
         this.storageSet();
     }
@@ -42,7 +49,7 @@ export class AppComponent {
     // Validation
 
     hasError(): boolean {
-        if (this.newTask === '') { return true; }
+        if (this.newTodo === '') { return true; }
         return false;
     }
 
@@ -60,5 +67,11 @@ export class AppComponent {
     storageClear(): void {
         this.list = [];
         localStorage.clear();
+    }
+
+    // HTTP
+
+    getHttpPosts(): void {
+        this.httpService.getPosts().then((res: any) => this.posts = res);
     }
 }
