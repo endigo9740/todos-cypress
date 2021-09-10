@@ -1,11 +1,9 @@
 const elemPostArticles = '#posts #content article';
 
-describe('App initilization', () => {
+describe('Smoke tests', () => {
 
-    it('loads http posts when page is loaded', () => {
+    it('ensures app is loading', () => {
         cy.seedAndVisit()
-        cy.get(elemPostArticles)
-            .should('have.length', 4)
     })
 
 })

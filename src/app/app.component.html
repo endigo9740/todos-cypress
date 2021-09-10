@@ -19,19 +19,19 @@
                 <ng-container *ngFor="let li of list | filter:filterValue">
                     <li (click)="setStatus(li)">
                         <input type="checkbox" [checked]="li.status === 'done'">
-                        <h3>{{li.label}}</h3>
+                        <h3 [ngClass]="{'complete': li.status === 'done'}">{{li.label}}</h3>
                     </li>
                 </ng-container>
             </nav>
         </section>
         <footer>
-            <p id="count">{{list.length}} todos left</p>
+            <p id="count">{{list.length}} {{list.length === 1 ? 'todo' : 'todos'}}</p>
             <button id="btnClear" (click)="storageClear()">Clear</button>
             <div id="spacer"></div>
             <nav id="filters">
-                <button (click)="setFilter(undefined)">All</button>
-                <button (click)="setFilter('active')">Active</button>
-                <button (click)="setFilter('done')">Complete</button>
+                <button id="filterAll" (click)="setFilter(undefined)">All</button>
+                <button id="filterActive" (click)="setFilter('active')">Active</button>
+                <button id="filterComplete" (click)="setFilter('done')">Complete</button>
             </nav>
         </footer>
     </div>
@@ -45,7 +45,7 @@
         </header>
         <!-- HTTP Posts -->
         <section id="content">
-            <article *ngFor="let p of posts" (click)="p.isComplete = !p.isComplete">
+            <article *ngFor="let p of posts" (click)="p.isComplete = !p.isComplete" [ngClass]="{'highlight': p.id === 2}">
                 <header class="postHeader">
                     <span class="id">{{p.id}}</span>
                     <h3>{{p.title}}</h3>

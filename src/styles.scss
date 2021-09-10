@@ -44,8 +44,9 @@ pre {background: black; color: white; padding: 20px; overflow-x: auto;}
                     display: flex; align-items: center;
                     border-bottom: 1px solid $colorGrey;
                     input+h3 {margin-left: 20px;}
-                    input[type=checkbox] {flex: 0 0 auto;}
+                    input[type=checkbox] {flex: 0 0 auto; width: 24px; height: 24px;}
                     h3 {flex: 1;}
+                    .complete {text-decoration: line-through;}
                 }
             }
         }
@@ -77,6 +78,7 @@ pre {background: black; color: white; padding: 20px; overflow-x: auto;}
                 }
                 .postContent {margin-top: 20px;}
             }
+            .highlight {border: 1px solid $colorWhite;}
         }
     }
 }
