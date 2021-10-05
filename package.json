@@ -8,7 +8,6 @@
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "cypress:open": "$(npm bin)/cypress open",
-        "cypress:run": "$(npm bin)/cypress run",
         "cypress:run-headless": "$(npm bin)/cypress run --headless"
     },
     "private": true,
