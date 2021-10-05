@@ -9,5 +9,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Cypress
 
 * `npm run cypress:open` - run Cypress UI from the CLI
-* `npm run cypress:run` - run Cypress from the CLI
 * `npm run cypress:run-headless` - run Cypress from the CLI completely headless
